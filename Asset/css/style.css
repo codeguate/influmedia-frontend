@@ -46,6 +46,18 @@ body{
   display: none;
 }
 @media only screen and (max-width: 780px){
+    .text-left{
+      text-align: center !important;
+    }
+    .w-70{
+      width: 100% !important;
+    }
+    .w-75{
+      width: 100% !important;
+    }
+    .w-60{
+      width: 80% !important;
+    }
     .fondo-form{
         height: 100% !important;
         width: 100% !important;
@@ -101,10 +113,7 @@ body{
       margin-top: 2% !important;
       display: block;
     }
-    body{
-      background-image: url(../img/Example/Landing\ Celular/CEL---Fondo.png) !important;
-      
-    }
+
     .offset-sm-1 {
       margin-left: 0;
     }
@@ -173,8 +182,14 @@ body{
   .w-60{
     width: 60%;
   }
-  .w-10{
-    width: 10%;
+  .h-80{
+    height: 80%;
+  }
+  .w-10 {
+    margin-left: 2%;
+    margin-right: 0%;
+    width: auto;
+    height: 29px;
   }
 .content-input{
   margin-bottom: 3%;
@@ -184,6 +199,40 @@ input{
   border: none !important;
 }
 #icon_1{
-  width: 5%;
+  /* width: 5%; */
   margin-left: 2%;
+}
+.color_morado{
+  color: #474ebb;
+}
+.color_azul{
+  color: #2b64e7;
+}
+.title_bienvenido{
+  color: #474ebb;
+  text-align: left;
+  font-weight: 400;
+  font-size: 3em;
+  margin-bottom: 0;
+  line-height: 1;
+}
+.desck_title{
+  color: #2b64e7;
+  text-align: left;
+  font-weight: 100;
+  font-size: 1.6em;
+}
+.content_form{
+  margin-top: 25%;
+}
+.submit{
+  width: 100%;
+  background-color: #474ebb;
+  border-radius: 50px;
+  color: white;
+  font-size: 1.4em;
+  margin-top: 10%;
+}
+.text{
+  text-align: center;
 }
