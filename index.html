@@ -28,6 +28,8 @@
     <title>5B | Registro Conéctate</title>
   </head>
   <body>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v3.3&appId=378526666182086&autoLogAppEvents=1"></script>
     <div class="row h-100">
         
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 h-100 d-flex">
@@ -40,13 +42,14 @@
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 h-100 d-flex">
             <div class="w-75 text-center m-auto ">
-                <img class="w-90 m-auto" src="./Asset/img/LoginFB.png">
+                  <img id="login" class="w-90 m-auto pointerpointerpointer" src="./Asset/img/LoginFB.png">
                 <p class="text-left text-white texto-login">
                     Regístrate con Facebook para continuar con la validación de tu código además podrás ganar un premio sorpresa.
                 </p>
             </div>
         </div>
     </div>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -55,6 +58,93 @@
     <script src="./Asset/js/main.js"></script>
     <script src="./Asset/js/events.js"></script>
     <script>
+    // Load the SDK asynchronously
+    (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        $(function() {
+
+var app_id = '378526666182086';
+var scopes = 'email, user_friends, user_online_presence';
+
+var btn_login = '<a href="#" id="login" class="btn btn-primary">Iniciar sesión</a>';
+
+var div_session = "<div class='text-center text-light' id='facebook-session'>"+
+          "<strong class='p-3'></strong><br>"+
+          "<img class='m-auto'><br>"+
+          "<a href='#' id='logout' class='btn btn-danger mt-3 p-2'>Cerrar sesión</a>"+
+          "</div>";
+// Inicio de api
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : app_id,
+      status     : true,
+      cookie     : true, 
+      xfbml      : true, 
+      version    : 'v2.1'
+    });
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response, function() {});
+    });
+  };
+  var statusChangeCallback = function(response, callback) {
+    if (response.status === 'connected') {
+        getFacebookData();
+    } else {
+       callback(false);
+    }
+  }
+  var checkLoginState = function(callback) {
+    FB.getLoginStatus(function(response) {
+        callback(response);
+    });
+  }
+
+  var getFacebookData =  function() {
+    FB.api('/me', function(response) {
+      $('#login').after(div_session);
+      $('#login').remove();
+      $('#facebook-session strong').text("Bienvenido: "+response.name+"\n");
+      $('#facebook-session img').attr('src','http://graph.facebook.com/'+response.id+'/picture?type=large');
+    });
+  }
+
+  var facebookLogin = function() {
+    checkLoginState(function(data) {
+      if (data.status !== 'connected') {
+        FB.login(function(response) {
+          if (response.status === 'connected')
+            getFacebookData();
+        }, {scope: scopes});
+      }else{
+        getFacebookData();
+
+      }
+    })
+  }
+
+  var facebookLogout = function() {
+    checkLoginState(function(data) {
+      if (data.status === 'connected') {
+        FB.logout(function(response) {
+        $('#facebook-session').before(btn_login);
+        $('#facebook-session').remove();
+      })
+    }
+    })
+
+  }
+
+  $(document).on('click', '#login', function(e) {
+    e.preventDefault();
+
+    facebookLogin();
+  })
+})
     </script>
   </body>
 </html>
