@@ -32,7 +32,7 @@
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v3.3&appId=378526666182086&autoLogAppEvents=1"></script>
     <div class="row h-100">
         
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 h-100 d-flex">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 h-100 d-flex" >
             <div class="w-70 text-left m-auto ">
                 <img class="w-90" src="./Asset/img/Somos.png">
                 <img class="w-90" src="./Asset/img/Logo Influmedia.png">
@@ -40,7 +40,7 @@
                 <p class="text-white text-somos">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
             </div>
         </div>
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 h-100 d-flex">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 h-100 d-flex" id="FormFacebook" >
             <div class="w-75 text-center m-auto ">
                   <img id="login" class="w-90 m-auto pointerpointerpointer" src="./Asset/img/LoginFB.png">
                 <p class="text-left text-white texto-login">
@@ -48,8 +48,71 @@
                 </p>
             </div>
         </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 h-100 d-none" id="FormRegistro" style="background-color: white">
+          <div class="w-60 h-80 text-center m-auto ">
+              <div>
+                  <h4 class="title_bienvenido">BIENVENIDO</h4>
+                  <h6 class="desck_title">Registra tus datos y código.</h6>
+              </div>
+              <div class="d-flex w-50 mx-auto" >
+                  <img id="ProfilePic" class="w-50 mx-auto rounded-circle" src="./Asset/img/Iconos Formulario/Nombre.png">
+              </div>
+              <div class="content_form">
+                  <form>
+                      <div class="d-flex content-input" >
+                          <img id="icon_1" class="w-10" src="./Asset/img/Iconos Formulario/Nombre.png">
+                          <input class="form-control w-90" type="text" id="name1" name="name1" placeholder="Nombre">
+                      </div>
+                      <div class="d-flex content-input" >
+                          <img class="w-10" src="./Asset/img/Iconos Formulario/Documento.png">
+                          <input class="form-control w-90" type="text" id="dpi" name="dpi" onkeyup="cuiIsValid(event);" placeholder="Documento Identificación">
+                          <div id="dpiVerificacion" class="d-none alert alert-danger w-75 mx-auto">
+                              Tu Identificacion ya se encuentra registrado
+                           </div>
+                      </div>
+                      <div class="d-flex content-input" >
+                          <div class="row mx-auto responsive-inputs" style="width: 100%;"> 
+                            
+                            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                              <img class="w-100" src="./Asset/img/Iconos Formulario/Telefono.png">
+                            </div>
+                            
+                            <input type="text" class="form-control col-xs-4 col-sm-4 col-md-4 col-lg-4 " id="area" name="area" placeholder="PREFIJO" onkeyup="calidarArea(event);">
+                            <input type="text" class="form-control col-xs-7 col-sm-7 col-md-7 col-lg-7" id="telefono" name="telefono" placeholder="TELÉFONO" onkeyup="calidarTele(event);">
+                          </div>
+                      </div>
+                      <div class="d-flex content-input" >
+                          <img class="w-10" src="./Asset/img/Iconos Formulario/Email.png">
+                          <input class="form-control w-90" type="email" id="email1" name="email1" placeholder="Correo electrónico">
+                          <div id="email1Verificacion" class="d-none alert alert-danger mt-2 w-75 mx-auto">
+                              Tu Email ya se encuentra registrado
+                           </div>
+                      </div>
+                      <div class="d-flex content-input" >
+                          <img class="w-10" src="./Asset/img/Iconos Formulario/Codigo.png">
+                          <input class="form-control w-90" type="text" id="codigo" name="codigo" placeholder="Código de Registro" onkeyup="buscaCodigo(this.value);">
+                          <div id="codigoVerificacion" class="d-none alert alert-danger mt-2  w-75 mx-auto">
+                              Este Código no Existe
+                           </div>
+                           <div id="codigoVerificacion2" class="d-none alert alert-danger  mt-2 w-75 mx-auto">
+                              Tu Codigo ya esta registrado en otro usuario
+                           </div>
+                      </div>
+                      <div class="form-group w-100 text-center">
+                          <button type="button" style="cursor:pointer;" class="m-auto w-75 submit" id="guardar">Registrar</button>
+                      </div>
+                      <!-- <input type="submit" placeholder="registrarse"> -->
+                  </form>
+              </div>
+          </div>
+      </div>
     </div>
+    <div class="modal" id="loaderModal">
+        <div style="height: 100%;text-align: center;" >
+            <div class="lds-ring" style="align-self: center;margin-top: 15%;"><div></div><div></div><div></div><div></div></div>
 
+        </div>
+      </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -87,6 +150,8 @@ var div_session = "<div class='text-center text-light' id='facebook-session'>"+
       xfbml      : true, 
       version    : 'v2.1'
     });
+    $("#loaderModal").modal('show');
+    
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response, function() {});
     });
@@ -95,6 +160,10 @@ var div_session = "<div class='text-center text-light' id='facebook-session'>"+
     if (response.status === 'connected') {
         getFacebookData();
     } else {
+      setTimeout(() => {
+                        $("#loaderModal").modal('hide');
+                        
+                    }, 500);
        callback(false);
     }
   }
@@ -106,10 +175,17 @@ var div_session = "<div class='text-center text-light' id='facebook-session'>"+
 
   var getFacebookData =  function() {
     FB.api('/me', function(response) {
-      $('#login').after(div_session);
+      $("#FormRegistro").removeClass('d-none');
+      $("#FormRegistro").addClass('d-flex');
+      $("#FormFacebook").addClass('d-none');
+      $("#FormFacebook").removeClass('d-flex');
       $('#login').remove();
-      $('#facebook-session strong').text("Bienvenido: "+response.name+"\n");
-      $('#facebook-session img').attr('src','http://graph.facebook.com/'+response.id+'/picture?type=large');
+      $('#name1').val(""+response.name);
+      $('#ProfilePic').attr('src','http://graph.facebook.com/'+response.id+'/picture?type=large');
+      setTimeout(() => {
+                        $("#loaderModal").modal('hide');
+                        
+                    }, 500);
     });
   }
 
