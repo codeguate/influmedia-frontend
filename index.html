@@ -2,30 +2,14 @@
 <html lang="en">
   <head>
     <!-- Required meta tags -->
-    <link rel="apple-touch-icon" sizes="57x57" href="./Asset/img/favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="./Asset/img/favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="./Asset/img/favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="./Asset/img/favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="./Asset/img/favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="./Asset/img/favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="./Asset/img/favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="./Asset/img/favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="./Asset/img/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="./Asset/img/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./Asset/img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="./Asset/img/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./Asset/img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="./Asset/img/favicon/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
     <meta charset="utf-8">
+    <link rel="shortcut icon" href="./Asset/img/favicon/favicon.png" /> 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="Asset/css/style.css">
-    <title>5B | Registro Conéctate</title>
+    <title>SOMOS | INFLUMEDIA</title>
   </head>
   <body>
     <div id="fb-root"></div>
@@ -83,14 +67,14 @@
                       </div>
                       <div class="d-flex content-input" >
                           <img class="w-10" src="./Asset/img/Iconos Formulario/Email.png">
-                          <input class="form-control w-90" type="email" id="email1" name="email1" placeholder="Correo electrónico">
-                          <div id="email1Verificacion" class="d-none alert alert-danger mt-2 w-75 mx-auto">
+                          <input class="form-control w-90" type="email" id="email2" name="email2" placeholder="Correo electrónico">
+                          <div id="email2Verificacion" class="d-none alert alert-danger mt-2 w-75 mx-auto">
                               Tu Email ya se encuentra registrado
                            </div>
                       </div>
                       <div class="d-flex content-input" >
                           <img class="w-10" src="./Asset/img/Iconos Formulario/Codigo.png">
-                          <input class="form-control w-90" type="text" id="codigo" name="codigo" placeholder="Código de Registro" onkeyup="buscaCodigo(this.value);">
+                          <input class="form-control w-90" type="text" id="codigo" name="codigo" placeholder="Código de Registro" onkeyup="buscaCodigo(event);">
                           <div id="codigoVerificacion" class="d-none alert alert-danger mt-2  w-75 mx-auto">
                               Este Código no Existe
                            </div>
@@ -132,7 +116,7 @@
         $(function() {
 
 var app_id = '378526666182086';
-var scopes = 'email, user_friends, user_online_presence';
+var scopes = 'email';
 
 var btn_login = '<a href="#" id="login" class="btn btn-primary">Iniciar sesión</a>';
 

@@ -251,15 +251,15 @@ $(document).ready(function () {
         }
     });
 
-    $("#email1").blur(async function (e) { 
+    $("#email2").blur(async function (e) { 
         {
-            await verificar("email",$("#email1").val());
+            await verificar("email",$("#email2").val());
             if(valid.email){
-                $("#email1").css('border-color','red');
+                $("#email2").css('border-color','red');
                 $("#loaderModal").modal('hide');
 
             }else{
-                $("#email1").css('border-color','green');
+                $("#email2").css('border-color','green');
                 $("#loaderModal").modal('hide');
             }
         }

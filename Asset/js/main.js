@@ -6,7 +6,7 @@ var valid = {
 }
 
 function guardar(data){
-    if($("#dpi").hasClass('border-success') && $("#email1").hasClass('border-success') && $("#codigo").hasClass('border-success')){
+    if($("#dpi").hasClass('border-success') && $("#email2").hasClass('border-success') && $("#codigo").hasClass('border-success')){
         $.ajax({
             type: "POST",
             async:true,
@@ -38,7 +38,7 @@ function guardar(data){
                 if(error.status==400){
                     $("#alertModal").removeClass("d-none");
                     $("#ErrorMesagge").html("Error de Registro");
-                    await verificar("email",$("#email1").val());
+                    await verificar("email",$("#email2").val());
                     await verificar("dpi",$("#dpi").val().replace(/ /g, '').replace(/-/g, ''));
                     await verificar("codigo",$("#codigo").val());
                     await buscaCodigo($("#codigo").val());
@@ -62,7 +62,7 @@ function guardar(data){
             
         }, 500);
         
-    }else if(!$("#email1").hasClass('border-success')){
+    }else if(!$("#email2").hasClass('border-success')){
         console.log('eror email');
         $("#alertModal").removeClass("d-none");
         $("#ErrorMesagge").html("El Email ya esta registrado");
@@ -91,9 +91,10 @@ function verificar(type,id){
             state:id,
             filter:type
         }
+        type3=type
 
-        if(type=="email"){
-            type="email1";
+        if(type3=="email"){
+            type3="email2";
         }
             $.ajax({
                 type: "GET",
@@ -108,13 +109,13 @@ function verificar(type,id){
                         
                         
                     if(response.length>0){
-                        $("#"+type+"Verificacion").removeClass('d-none')
-                        $("#"+type).addClass('border border-danger')
-                        $("#"+type).removeClass('border border-success')
+                        $("#"+type3+"Verificacion").removeClass('d-none')
+                        $("#"+type3).addClass('border border-danger')
+                        $("#"+type3).removeClass('border border-success')
                     }else{
-                        $("#"+type+"Verificacion").addClass('d-none')
-                        $("#"+type).removeClass('border border-danger')
-                        $("#"+type).addClass('border border-success')
+                        $("#"+type3+"Verificacion").addClass('d-none')
+                        $("#"+type3).removeClass('border border-danger')
+                        $("#"+type3).addClass('border border-success')
                     }
                     
                 },
@@ -162,7 +163,7 @@ function buscaCodigo(id){
                             success: function (response) {
                                 if(response.length>0){
                                     if(response[0]){
-                                        if(response[0].email==$("#email1").val()){
+                                        if(response[0].email==$("#email2").val()){
                                             $("#codigoVerificacion").addClass('d-none')
                                             $("#codigoVerificacion2").addClass('d-none')
                                             $("#codigo").removeClass('border border-danger')
@@ -234,7 +235,7 @@ function buscarCodigo(codigo){
                         $("#dpi").val(formatearDPI(response.dpi));
                         $("#area").val("+"+response.telefono.substring(0,3));
                         $("#telefono").val(formatearTel(response.telefono.substring(3)));
-                        $("#email1").val(response.email);
+                        $("#email2").val(response.email);
                         $("#empresa").val(response.descripcion);
                         $("#codigo").val(response.codigo);
 
@@ -242,7 +243,7 @@ function buscarCodigo(codigo){
                         $("#dpi").attr('disabled',true);
                         $("#area").attr('disabled',true);
                         $("#telefono").attr('disabled',true);
-                        $("#email1").attr('disabled',true);
+                        $("#email2").attr('disabled',true);
                         $("#empresa").attr('disabled',true);
                         $("#codigo").attr('disabled',true);
 
@@ -250,7 +251,7 @@ function buscarCodigo(codigo){
                         $("#dpi").removeClass('border-danger');
                         $("#area").removeClass('border-danger');
                         $("#telefono").removeClass('border-danger');
-                        $("#email1").removeClass('border-danger');
+                        $("#email2").removeClass('border-danger');
                         $("#empresa").removeClass('border-danger');
                         $("#codigo").removeClass('border-danger');
 
@@ -258,7 +259,7 @@ function buscarCodigo(codigo){
                         $("#dpi").addClass('border-success');
                         $("#area").addClass('border-success');
                         $("#telefono").addClass('border-success');
-                        $("#email1").addClass('border-success');
+                        $("#email2").addClass('border-success');
                         $("#empresa").addClass('border-success');
                         $("#codigo").addClass('border-success');
                         
@@ -330,10 +331,10 @@ $(document).ready(function () {
             apellidos:nombres[2]+" "+nombres[3],
             telefono:($("#area").val().substring(0,$("#area").val().length).replace(/ /g, '').replace("+", ''))+""+($("#telefono").val().substring(0,$("#telefono").val().length).replace(/ /g, '').replace(/-/g, '')),
             dpi:$("#dpi").val().replace(/ /g, '').replace(/-/g, ''),
-            email:$("#email1").val(),
+            email:$("#email2").val(),
             foto:$("#ProfilePic").attr('src'),
             password:"5Bconectados",
-            username:$("#email1").val().split('@')[0],
+            username:$("#email2").val().split('@')[0],
             descripcion:$("#empresa").val(),
             codigo:$("#codigo").val()
         }
