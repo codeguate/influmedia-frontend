@@ -285,6 +285,29 @@ function buscarCodigo(codigo){
     }
     
 }
+
+var normalize = (function() {
+    var from = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç", 
+        to   = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuunncc",
+        mapping = {};
+   
+    for(var i = 0, j = from.length; i < j; i++ )
+        mapping[ from.charAt( i ) ] = to.charAt( i );
+   
+    return function( str ) {
+        var ret = [];
+        for( var i = 0, j = str.length; i < j; i++ ) {
+            var c = str.charAt( i );
+            if( mapping.hasOwnProperty( str.charAt( i ) ) )
+                ret.push( mapping[ c ] );
+            else
+                ret.push( c );
+        }      
+        return ret.join( '' );
+    }
+   
+  })();
+
 $(document).ready(function () {
     $("#guardar").attr('disabled',true);
 
@@ -311,7 +334,7 @@ $(document).ready(function () {
     $("#guardar").click(function (e) { 
         $("#loaderModal").modal("show");
         e.preventDefault();
-        let nombre= $("#name1").val();
+        let nombre= normalize($("#name1").val());
         let nombres = ['','','','']
         if(nombre!=""){
             let nombresC = nombre.split(' ');

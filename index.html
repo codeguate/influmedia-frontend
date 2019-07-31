@@ -14,6 +14,12 @@
   <body>
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v3.3&appId=378526666182086&autoLogAppEvents=1"></script>
+    <div id="alertModal" class="d-none alert alert-danger" >
+      <button type="button" class="close" onClick="$('#alertModal').addClass('d-none');">&times;</button>
+      <span id="ErrorMesagge">
+
+      </span>
+        </div>
     <div class="row h-100">
         
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 h-100 d-flex" >
@@ -26,7 +32,7 @@
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 h-100 d-flex" id="FormFacebook" >
             <div class="w-75 text-center m-auto ">
-                  <img id="login" class="w-90 m-auto pointerpointerpointer" src="./Asset/img/LoginFB.png">
+                  <img id="loginFacebook" class="w-90 m-auto pointerpointerpointer" src="./Asset/img/LoginFB.png">
                 <p class="text-left text-white texto-login">
                     Regístrate con Facebook para continuar con la validación de tu código además podrás ganar un premio sorpresa.
                 </p>
@@ -199,7 +205,7 @@ var div_session = "<div class='text-center text-light' id='facebook-session'>"+
 
   }
 
-  $(document).on('click', '#login', function(e) {
+  $(document).on('click', '#loginFacebook', function(e) {
     e.preventDefault();
 
     facebookLogin();
