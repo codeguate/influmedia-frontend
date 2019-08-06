@@ -247,6 +247,9 @@ input{
   #loginFacebook{
     margin-top: 10% !important;
   }
+  #FormRegistro{
+    height: fit-content;
+  }
 }
 #ProfilePic{
   width: 150px !important;
