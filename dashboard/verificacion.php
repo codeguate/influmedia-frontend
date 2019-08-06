@@ -15,15 +15,9 @@ $codigo = $_GET['codigo'];
     <title>SOMOS | INFLUMEDIA</title>
   </head>
   <body>
-    <div id="alertModal" class="d-none alert alert-danger" >
-      <button type="button" class="close" onClick="$('#alertModal').addClass('d-none');">&times;</button>
-      <span id="ErrorMesagge">
-
-      </span>
-        </div>
-    <div class="row h-100">
+        <div class="row h-100">
         
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 h-100 d-flex" >
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 h-100 d-flex mb-contain" >
             <div class="w-70 text-left m-auto ">
                 <img class="w-90" src="../Asset/img/Somos.png">
                 <img class="w-90" src="../Asset/img/Logo Influmedia.png">
@@ -31,7 +25,7 @@ $codigo = $_GET['codigo'];
                 <!-- <p class="text-white text-somos">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p> -->
             </div>
         </div>
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 h-100 d-none" id="FormFacebook" >
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 h-100 d-none mb-contain" id="FormFacebook" >
             <div class="w-75 text-center m-auto ">
                 <!-- <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="false"></div> -->
                   <img id="loginFacebook" class="w-90 m-auto pointerpointerpointer" src="../Asset/img/LoginFB.png">
@@ -64,14 +58,10 @@ $codigo = $_GET['codigo'];
                           Tu Identificacion ya se encuentra registrado
                        </div>
                       <div class="d-flex content-input" >
-                          <div class="row mx-auto responsive-inputs" style="width: 100%;"> 
-                            
-                            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                              <img class="w-100" src="../Asset/img/Iconos Formulario/Telefono.png">
-                            </div>
-                            
-                            <input type="text" class="form-control col-xs-4 col-sm-4 col-md-4 col-lg-4 " id="area" name="area" placeholder="PREFIJO" onkeyup="calidarArea(event);">
-                            <input type="text" class="form-control col-xs-7 col-sm-7 col-md-7 col-lg-7" id="telefono" name="telefono" placeholder="TELÉFONO" onkeyup="calidarTele(event);">
+                          <div class="mx-auto responsive-inputs d-flex" style="width: 100%;"> 
+                              <img class="w-10" src="../Asset/img/Iconos Formulario/Telefono.png">
+                            <input type="text" class="form-control  " id="area" name="area" placeholder="PREFIJO" onkeyup="calidarArea(event);">
+                            <input type="text" class="form-control " id="telefono" name="telefono" placeholder="TELÉFONO" onkeyup="calidarTele(event);">
                           </div>
                       </div>
                       <div class="d-flex content-input" >
@@ -94,6 +84,12 @@ $codigo = $_GET['codigo'];
                       <div id="codigoVerificacion2" class="d-none alert alert-danger  mt-2 w-75 mx-auto">
                           Tu Codigo ya esta registrado en otro usuario
                        </div>
+                       <div id="alertModal" class="d-none alert alert-danger" >
+                          <button type="button" class="close" onClick="$('#alertModal').addClass('d-none');">&times;</button>
+                          <span id="ErrorMesagge">
+                    
+                          </span>
+                            </div>
                       <div class="form-group w-100 text-center">
                           <button type="button" class="m-auto w-75 btn btn-success" disabled="true">Registrado</button>
                       </div>
@@ -117,7 +113,7 @@ $codigo = $_GET['codigo'];
     <script src="../Asset/js/main.js"></script>
     <script src="../Asset/js/events.js"></script>
     <script>
-    buscarCodigo('<?php echo $codigo; ?>');
+     buscarCodigo('<?php echo $codigo; ?>');
     </script>
   </body>
 </html>

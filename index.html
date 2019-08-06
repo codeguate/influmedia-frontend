@@ -14,12 +14,7 @@
   <body>
     <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v4.0&appId=402288300635480&autoLogAppEvents=1"></script>
-    <div id="alertModal" class="d-none alert alert-danger" >
-      <button type="button" class="close" onClick="$('#alertModal').addClass('d-none');">&times;</button>
-      <span id="ErrorMesagge">
-
-      </span>
-        </div>
+    
     <div class="row h-100">
         
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 h-100 d-flex mb-contain" >
@@ -50,6 +45,7 @@
               </div>
               <div class="content_form">
                   <form>
+                      
                       <div class="d-flex content-input" >
                           <img id="icon_1" class="w-10" src="./Asset/img/Iconos Formulario/Nombre.png">
                           <input class="form-control w-90" type="text" id="name1" name="name1" placeholder="Nombre">
@@ -89,6 +85,12 @@
                       <div id="codigoVerificacion2" class="d-none alert alert-danger  mt-2 w-75 mx-auto">
                           Tu Codigo ya esta registrado en otro usuario
                        </div>
+                       <div id="alertModal" class="d-none alert alert-danger" >
+                          <button type="button" class="close" onClick="$('#alertModal').addClass('d-none');">&times;</button>
+                          <span id="ErrorMesagge">
+                    
+                          </span>
+                            </div>
                       <div class="form-group w-100 text-center">
                           <button type="button" style="cursor:pointer;" class="m-auto w-75 submit" id="guardar">Registrar</button>
                       </div>
