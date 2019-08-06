@@ -14,12 +14,12 @@ function guardar(data){
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             data:JSON.stringify(data),
-            url: "https://5bconectate.com/influmedia/backend/public/api/users",
+            url: "https://somosinflumedia.com/backend/public/api/users",
             success: async function (response) {
     
                 if(response.id){
                     location.href = "./dashboard/registrado.html"
-                    // url = "https://eu57.chat-api.com/instance54781/sendFile?token=jyxxunefvf2f43sz&phone="+response.telefono+"&body=https://5bconectate.com/influmedia/backend/public/"+response.codigo+"_salida.png&filename="+response.codigo+".png"
+                    // url = "https://eu57.chat-api.com/instance54781/sendFile?token=jyxxunefvf2f43sz&phone="+response.telefono+"&body=https://somosinflumedia.com/backend/public/"+response.codigo+"_salida.png&filename="+response.codigo+".png"
                     // await $.ajax({
                     //         type: "GET",
                     //         url: url,
@@ -103,10 +103,10 @@ function verificar(type,id){
                 cache:false,
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                url: "https://5bconectate.com/influmedia/backend/public/api/filter/"+data.id+"/users/"+data.state+"?filter="+data.filter,
+                url: "https://somosinflumedia.com/backend/public/api/filter/"+data.id+"/users/"+data.state+"?filter="+data.filter,
                 success: function (response) {
                         console.log(response);
-                        console.log("https://5bconectate.com/influmedia/backend/public/api/filter/"+data.id+"/users/"+data.state+"?filter="+data.filter);
+                        console.log("https://somosinflumedia.com/backend/public/api/filter/"+data.id+"/users/"+data.state+"?filter="+data.filter);
                         
                         
                     if(response.length>0){
@@ -150,7 +150,7 @@ function buscaCodigo(id){
                 cache:false,
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                url: "https://5bconectate.com/influmedia/backend/public/api/filter/"+data.id+"/codigos/"+data.state+"?filter="+data.filter,
+                url: "https://somosinflumedia.com/backend/public/api/filter/"+data.id+"/codigos/"+data.state+"?filter="+data.filter,
                 success: function (response) {
                     $("#codigoVerificacion").addClass('d-none')
                     if(response.length>0){
@@ -160,7 +160,7 @@ function buscaCodigo(id){
                             cache:false,
                             contentType: "application/json; charset=utf-8",
                             dataType: "json",
-                            url: "https://5bconectate.com/influmedia/backend/public/api/filter/"+data.id+"/users/"+data.state+"?filter="+data.filter,
+                            url: "https://somosinflumedia.com/backend/public/api/filter/"+data.id+"/users/"+data.state+"?filter="+data.filter,
                             success: function (response) {
                                 if(response.length>0){
                                     if(response[0]){
@@ -212,7 +212,7 @@ function buscaCodigo(id){
     }
 }
 function buscarCodigo(codigo){
-
+    $("#loaderModal").modal("show");
     if(codigo!=""){
         var data = {
             id:0,
@@ -228,11 +228,12 @@ function buscarCodigo(codigo){
                 cache:false,
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                url: "https://5bconectate.com/influmedia/backend/public/api/filter/"+data.id+"/users/"+data.state+"?filter="+data.filter,
+                url: "https://somosinflumedia.com/backend/public/api/filter/"+data.id+"/users/"+data.state+"?filter="+data.filter,
                 success: function (response) {
                     if(response.length>0){
                         response = response[0]
-                        $("#name").val(response.nombres+" "+response.apellidos);
+                        $('#ProfilePic').attr('src',response.foto);
+                        $("#name1").val(response.nombres+" "+response.apellidos);
                         $("#dpi").val(formatearDPI(response.dpi));
                         $("#area").val("+"+response.telefono.substring(0,3));
                         $("#telefono").val(formatearTel(response.telefono.substring(3)));
@@ -240,7 +241,7 @@ function buscarCodigo(codigo){
                         $("#empresa").val(response.descripcion);
                         $("#codigo").val(response.codigo);
 
-                        $("#name").attr('disabled',true);
+                        $("#name1").attr('disabled',true);
                         $("#dpi").attr('disabled',true);
                         $("#area").attr('disabled',true);
                         $("#telefono").attr('disabled',true);
@@ -248,7 +249,7 @@ function buscarCodigo(codigo){
                         $("#empresa").attr('disabled',true);
                         $("#codigo").attr('disabled',true);
 
-                        $("#name").removeClass('border-danger');
+                        $("#name1").removeClass('border-danger');
                         $("#dpi").removeClass('border-danger');
                         $("#area").removeClass('border-danger');
                         $("#telefono").removeClass('border-danger');
@@ -256,7 +257,7 @@ function buscarCodigo(codigo){
                         $("#empresa").removeClass('border-danger');
                         $("#codigo").removeClass('border-danger');
 
-                        $("#name").addClass('border-success');
+                        $("#name1").addClass('border-success');
                         $("#dpi").addClass('border-success');
                         $("#area").addClass('border-success');
                         $("#telefono").addClass('border-success');
@@ -264,7 +265,10 @@ function buscarCodigo(codigo){
                         $("#empresa").addClass('border-success');
                         $("#codigo").addClass('border-success');
                         
-                        
+                        setTimeout(() => {
+                            $("#loaderModal").modal('hide');
+                            
+                        }, 500);
                     }else{
                         $("#codigoVerificacion").removeClass('d-none')
                         $("#codigo").addClass('border border-danger')
@@ -381,7 +385,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "https://5bconectate.com/influmedia/backend/public/api/login",
+            url: "https://somosinflumedia.com/backend/public/api/login",
             data: data,
             dataType: "json",
             success: function (response) {

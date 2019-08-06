@@ -13,7 +13,7 @@
   </head>
   <body>
     <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v3.3&appId=378526666182086&autoLogAppEvents=1"></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v4.0&appId=402288300635480&autoLogAppEvents=1"></script>
     <div id="alertModal" class="d-none alert alert-danger" >
       <button type="button" class="close" onClick="$('#alertModal').addClass('d-none');">&times;</button>
       <span id="ErrorMesagge">
@@ -27,11 +27,12 @@
                 <img class="w-90" src="./Asset/img/Somos.png">
                 <img class="w-90" src="./Asset/img/Logo Influmedia.png">
                 <br>
-                <p class="text-white text-somos">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
+                <!-- <p class="text-white text-somos">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p> -->
             </div>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 h-100 d-flex" id="FormFacebook" >
             <div class="w-75 text-center m-auto ">
+                <!-- <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="false"></div> -->
                   <img id="loginFacebook" class="w-90 m-auto pointerpointerpointer" src="./Asset/img/LoginFB.png">
                 <p class="text-left text-white texto-login">
                     Regístrate con Facebook para continuar con la validación de tu código además podrás ganar un premio sorpresa.
@@ -56,10 +57,11 @@
                       <div class="d-flex content-input" >
                           <img class="w-10" src="./Asset/img/Iconos Formulario/Documento.png">
                           <input class="form-control w-90" type="text" id="dpi" name="dpi" onkeyup="cuiIsValid(event);" placeholder="Documento Identificación">
-                          <div id="dpiVerificacion" class="d-none alert alert-danger w-75 mx-auto">
-                              Tu Identificacion ya se encuentra registrado
-                           </div>
+                          
                       </div>
+                      <div id="dpiVerificacion" class="d-none alert alert-danger w-75 mx-auto">
+                          Tu Identificacion ya se encuentra registrado
+                       </div>
                       <div class="d-flex content-input" >
                           <div class="row mx-auto responsive-inputs" style="width: 100%;"> 
                             
@@ -74,20 +76,23 @@
                       <div class="d-flex content-input" >
                           <img class="w-10" src="./Asset/img/Iconos Formulario/Email.png">
                           <input class="form-control w-90" type="email" id="email2" name="email2" placeholder="Correo electrónico">
-                          <div id="email2Verificacion" class="d-none alert alert-danger mt-2 w-75 mx-auto">
-                              Tu Email ya se encuentra registrado
-                           </div>
+                          
                       </div>
+                      <div id="email2Verificacion" class="d-none alert alert-danger mt-2 w-75 mx-auto">
+                          Tu Email ya se encuentra registrado
+                       </div>
                       <div class="d-flex content-input" >
                           <img class="w-10" src="./Asset/img/Iconos Formulario/Codigo.png">
                           <input class="form-control w-90" type="text" id="codigo" name="codigo" placeholder="Código de Registro" onkeyup="buscaCodigo(event);">
-                          <div id="codigoVerificacion" class="d-none alert alert-danger mt-2  w-75 mx-auto">
-                              Este Código no Existe
-                           </div>
-                           <div id="codigoVerificacion2" class="d-none alert alert-danger  mt-2 w-75 mx-auto">
-                              Tu Codigo ya esta registrado en otro usuario
-                           </div>
+                          
+                          
                       </div>
+                      <div id="codigoVerificacion" class="d-none alert alert-danger mt-2  w-75 mx-auto">
+                          Este Código no Existe
+                       </div>
+                      <div id="codigoVerificacion2" class="d-none alert alert-danger  mt-2 w-75 mx-auto">
+                          Tu Codigo ya esta registrado en otro usuario
+                       </div>
                       <div class="form-group w-100 text-center">
                           <button type="button" style="cursor:pointer;" class="m-auto w-75 submit" id="guardar">Registrar</button>
                       </div>
@@ -116,12 +121,12 @@
           var js, fjs = d.getElementsByTagName(s)[0];
           if (d.getElementById(id)) return;
           js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/en_US/sdk.js";
+          js.src = "https://connect.facebook.net/en_US/sdk.js";
           fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
         $(function() {
 
-var app_id = '378526666182086';
+var app_id = '402288300635480';
 var scopes = 'email';
 
 var btn_login = '<a href="#" id="login" class="btn btn-primary">Iniciar sesión</a>';
@@ -137,7 +142,7 @@ var div_session = "<div class='text-center text-light' id='facebook-session'>"+
       appId      : app_id,
       status     : true,
       cookie     : true, 
-      xfbml      : true, 
+      xfbml      : true,
       version    : 'v2.1'
     });
     $("#loaderModal").modal('show');
