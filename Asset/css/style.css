@@ -248,7 +248,7 @@ input{
     margin-top: 10% !important;
   }
   #FormRegistro{
-    height: fit-content;
+    height: fit-content !important;
   }
 }
 #ProfilePic{
