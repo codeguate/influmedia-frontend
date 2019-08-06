@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var nameField = screen.find('nombre');
+var telefonoField = screen.find('telefono');
+var url = "https://somosinflumedia.com/backend/public/api/nissan";
+// var emailField = screen.find('Email');
+var params = {
+    nombre:"nombre",
+    telefono:"nombre"
+}
+var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+
+xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+xhr.setRequestHeader('Content-Type', 'application/json');
+xhr.send(params);
+xhr.open('POST', url);
+xhr.onreadystatechange = function() {
+if (xhr.readyState>3 && xhr.status==200) { 
+    success(xhr.responseText); 
+}else{
+    console.log(xhr);
+    console.log(xhr.status);
+}
+};
+return xhr;
+
+</script>
+</body>
+</html>
