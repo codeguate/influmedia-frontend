@@ -1,25 +1,27 @@
-var script = document.createElement('script');
-script.src = 'https://code.jquery.com/jquery-3.4.1.min.js';
-script.type = 'text/javascript';
-document.getElementsByTagName('head')[0].appendChild(script);
+var nameField = screen.find('Nombre');
+var telefonoField = screen.find('Telefono');
+// var emailField = screen.find('Email');
+var http = new XMLHttpRequest();
+var formData = new FormData();
 
+// "Current web app" URL we got after the deploy
+var googleAppURL = 'http://backend.devcodegt.com/influmedia/public/api/nissan';
 
-$(document).ready(function () {
-    var data = {
-        nombre : "nombre",//aqui debe ir el nombre de la variable que contiene el nombre 
-        telefono : "teoelefono"//aqui debe ir el nombre de la variable que contiene el telefono 
-    }
-    $.ajax({
-        type: "POST",
-        url: "http://backend.devcodegt.com/influmedia/public/api/nissan",
-        data: data,
-        success: function (response) {
-            alert("Si funciono el envio, usted mando los datos Nombre:"+response.nombre+" y Telefono:"+response.telefono)
-        },
-        error: function (error){
-            alert("ha ocurrido un error por favor verificar la consola");
-            console.log(error);
+// formData keys need to match column names in the spreadsheet (case sensitive)
+// formData.append('Email', emailField.value);
+formData.append('telefono', telefonoField.value);
+formData.append('nombre', nameField.value);
 
-        }
-    });    
+// define what happens on successful form data submission
+http.addEventListener('load', function (evt) {
+    // call 'c' because the action is considered "completed".
+    c();
 });
+// define what happens in case of an error
+http.addEventListener('error', function (evt) {
+    console.log('Error!');
+});
+// set up our request
+http.open('POST', googleAppURL, true);
+// send our data
+http.send(formData);
