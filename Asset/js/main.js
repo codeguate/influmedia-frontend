@@ -18,19 +18,20 @@ function guardar(data){
             success: async function (response) {
     
                 if(response.id){
-                    url = "https://eu57.chat-api.com/instance54781/sendFile?token=jyxxunefvf2f43sz&phone="+response.telefono+"&body=https://5bconectate.com/influmedia/backend/public/"+response.codigo+"_salida.png&filename="+response.codigo+".png"
-                    await $.ajax({
-                            type: "GET",
-                            url: url,
-                            async:true,
-                            cache:false,
-                            dataType: "json",
-                            success: function (response1) {
-                                if(response1.sent){
-                                    location.href = "./dashboard/registrado.html"
-                                }
-                            }
-                        });
+                    location.href = "./dashboard/registrado.html"
+                    // url = "https://eu57.chat-api.com/instance54781/sendFile?token=jyxxunefvf2f43sz&phone="+response.telefono+"&body=https://5bconectate.com/influmedia/backend/public/"+response.codigo+"_salida.png&filename="+response.codigo+".png"
+                    // await $.ajax({
+                    //         type: "GET",
+                    //         url: url,
+                    //         async:true,
+                    //         cache:false,
+                    //         dataType: "json",
+                    //         success: function (response1) {
+                    //             if(response1.sent){
+                    //                 location.href = "./dashboard/registrado.html"
+                    //             }
+                    //         }
+                    //     });
                     
                 }
             },

@@ -1,0 +1,25 @@
+var script = document.createElement('script');
+script.src = 'https://code.jquery.com/jquery-3.4.1.min.js';
+script.type = 'text/javascript';
+document.getElementsByTagName('head')[0].appendChild(script);
+
+
+$(document).ready(function () {
+    var data = {
+        nombre : "nombre",//aqui debe ir el nombre de la variable que contiene el nombre 
+        telefono : "teoelefono"//aqui debe ir el nombre de la variable que contiene el telefono 
+    }
+    $.ajax({
+        type: "POST",
+        url: "http://backend.devcodegt.com/influmedia/public/api/nissan",
+        data: data,
+        success: function (response) {
+            alert("Si funciono el envio, usted mando los datos Nombre:"+response.nombre+" y Telefono:"+response.telefono)
+        },
+        error: function (error){
+            alert("ha ocurrido un error por favor verificar la consola");
+            console.log(error);
+
+        }
+    });    
+});
