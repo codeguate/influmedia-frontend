@@ -232,7 +232,12 @@ function buscarCodigo(codigo){
                 success: function (response) {
                     if(response.length>0){
                         response = response[0]
-                        $('#ProfilePic').attr('src',response.foto);
+                        if(response.codigos){
+                            console.log(response);
+                            $('#registrarBTN').addClass('d-none');
+                            $('#registradoBTN').removeClass('d-none');
+                        }
+                        $('#ProfilePic').attr('src',response.foto.replace("http:","https:"));
                         $("#name1").val(response.nombres+" "+response.apellidos);
                         $("#dpi").val(formatearDPI(response.dpi));
                         $("#area").val("+"+response.telefono.substring(0,3));
@@ -240,7 +245,7 @@ function buscarCodigo(codigo){
                         $("#email2").val(response.email);
                         $("#empresa").val(response.descripcion);
                         $("#codigo").val(response.codigo);
-
+                        $("#id_hidden").val(response.id)
                         $("#name1").attr('disabled',true);
                         $("#dpi").attr('disabled',true);
                         $("#area").attr('disabled',true);
@@ -288,6 +293,36 @@ function buscarCodigo(codigo){
     }else{
         return false;
     }
+    
+}
+function registrar(){ 
+    $("#loaderModal").modal("show");
+    
+    var data = {
+        codigo:$("#codigo").val(),
+        activa:1,
+        asignado:+$("#id_hidden").val()
+    }
+    
+    $.ajax({
+        type: "PUT",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data:JSON.stringify(data),
+        url: "https://somosinflumedia.com/backend/public/api/check/codigo/"+data.codigo,
+        success: async function (response) {
+            setTimeout(() => {
+                $("#loaderModal").modal('hide');
+                
+            }, 500);
+            await buscarCodigo(response.codigo)
+            
+        },
+        error: function(error){
+            console.log(error);
+            
+        }
+    });
     
 }
 
@@ -418,6 +453,8 @@ $(document).ready(function () {
                 
             }
         });
+
+        
         
         
         

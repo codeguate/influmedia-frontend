@@ -90,10 +90,12 @@ $codigo = $_GET['codigo'];
                     
                           </span>
                             </div>
+                          <input class="form-control w-90 d-none" type="text" id="id_hidden" >
+
                       <div class="form-group w-100 text-center">
-                          <button type="button" class="m-auto w-75 btn btn-success" disabled="true">Registrado</button>
+                          <button type="button" class="m-auto w-75 btn btn-info" id="registrarBTN" onclick="registrar()">Registrar</button>
+                          <button type="button" class="m-auto w-75 btn btn-success d-none" id="registradoBTN" disabled="true">Registrado</button>
                       </div>
-                      <!-- <input type="submit" placeholder="registrarse"> -->
                   </form>
               </div>
           </div>
