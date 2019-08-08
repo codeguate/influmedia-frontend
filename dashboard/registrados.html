@@ -34,11 +34,13 @@
                 <table id="registrados" class="display w-100 table table-hover">
                   <thead>
                       <tr>
-                          <th style="width: 20%;" >Nombre</th>
-                          <th style="width: 20%;">Telefono</th>
-                          <th style="width: 20%;">Email</th>
-                          <th style="width: 20%;">Codigo</th>
-                          <th style="width: 10%;"></th>
+                            <th style="width: 20%;">Id</th>
+                            <th style="width: 20%;">Imagen</th>
+                            <th style="width: 20%;" >Nombre</th>
+                            <th style="width: 20%;">Telefono</th>
+                            <th style="width: 20%;">Email</th>
+                            <th style="width: 20%;">Codigo</th>
+                            <th style="width: 10%;"></th>
                       </tr>
                   </thead>
                   <tbody class="text-dark">
@@ -78,17 +80,23 @@
                     serverSide: true,
                     ajax:{url:"https://somosinflumedia.com/backend/public/api/users",dataSrc:""},
                     columns: [ 
-                        { data: 'nombres',
-                        render: function ( data, type, row ) {
-                            return row.nombres+" "+row.apellidos;
-                        } },
-                        { data: 'telefono' },
-                        { data: 'email' },
-                        { data: 'codigo' },
-                        { defaultContent: '',
-                        render: function ( data, type, row ) {
-                            return "<a href='https://panel.capiwha.com/send_message.php?apikey=SR1D0G46QFGAUSV0KMNZ&number="+row.telefono+"&text=https%3A%2F%2Fsomosinflumedia.com%2Fbackend%2Fpublic%2F"+row.codigo+"_salida.png' target='_blank'>Reenviar W</a>";
-                        } }
+                    { data: 'id'},
+                    { data: 'foto',   
+                    render: function ( data, type, row ) {
+                        return "<img src='"+row.foto+"' style='width: 100%'>";
+                    } },
+                    { data: 'nombres',
+                    render: function ( data, type, row ) {
+                        return row.nombres+" "+row.apellidos;
+                    } },
+                    
+                    { data: 'telefono' },
+                    { data: 'email' },
+                    { data: 'codigo' },
+                    { defaultContent: '',
+                    render: function ( data, type, row ) {
+                        return "<a href='https://panel.capiwha.com/send_message.php?apikey=SR1D0G46QFGAUSV0KMNZ&number="+row.telefono+"&text=https%3A%2F%2Fsomosinflumedia.com%2Fbackend%2Fpublic%2F"+row.codigo+"_salida.png' target='_blank'>Reenviar W</a>";
+                    } }
                     ],
                     "scrollY": 500,
                     "scrollX": true,
